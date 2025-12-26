@@ -1,0 +1,62 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+= Roadmap
+:icons: font
+
+== Current State
+
+[cols="1,1,3", options="header"]
+|===
+|Component |Status |Notes
+
+|Multi-forge mirroring
+|icon:check-circle[role="green"] Done
+|GitHub → GitLab/Codeberg/Bitbucket
+
+|Instant sync dispatch
+|icon:check-circle[role="green"] Done
+|Triggers `.git-private-farm` propagation
+
+|SSH hardening
+|icon:check-circle[role="green"] Done
+|Ed25519 host keys, pinned actions
+
+|Language policy
+|icon:check-circle[role="green"] Done
+|Hyperpolymath Standard defined
+
+|Script implementations
+|icon:clock[role="orange"] Pending
+|All 7 scripts to be uploaded
+|===
+
+== Phase 1: Core Scripts
+
+[%interactive]
+* [ ] `sysenv.sh` - System environment bootstrap
+* [ ] `langstrap.sh` - Language toolchain installer
+* [ ] `asdfman.sh` - asdf version manager helper
+
+== Phase 2: Shell Configuration
+
+[%interactive]
+* [ ] `init_bashrc_three_ply.sh` - Modular bashrc
+** Layer 1: Core aliases/functions
+** Layer 2: Environment-specific
+** Layer 3: Machine-local overrides
+
+== Phase 3: Fedora Kinoite Tools
+
+[%interactive]
+* [ ] `k-check.sh` - Cluster validation
+* [ ] `k-intune.sh` - Tuning automation
+
+== Phase 4: Hardware Utilities
+
+[%interactive]
+* [ ] `touchscreen_hunter_killer.sh` - Touchscreen management
+
+== Future Considerations
+
+* Rust rewrites for performance-critical scripts
+* Guix/Nix packaging (`guix.scm`, `flake.nix`)
+* Integration with broader Hyperpolymath ecosystem

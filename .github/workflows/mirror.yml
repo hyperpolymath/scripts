@@ -1,157 +1,138 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
-name: Mirror to GitLab/Codeberg/Bitbucket
+# SPDX-FileCopyrightText: 2025 Jonathan D.A. Jewell
+name: Mirror to Git Forges
 
 on:
   push:
-    branches: [main, master]
+    branches: [main]
   workflow_dispatch:
 
-# Principle of least privilege - only request what's needed
-permissions:
-  contents: read
-
-env:
-  # SSH host keys for verification (prevents MITM attacks)
-  # These are the official public host keys from each service
-  GITLAB_HOST_KEY: "gitlab.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAfuCHKVTjquxvt6CM6tdG4SLp1Btn/nOeHHE5UOzRdf"
-  CODEBERG_HOST_KEY: "codeberg.org ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIVIC02vnjFyL+I4RHfvIGNtOgJMe769VTF1VR4EB3ZB"
-  BITBUCKET_HOST_KEY: "bitbucket.org ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIazEu89wgQZ4bqs3d63QSMzYVa0MuJ2e2gKTKqu+UUO"
+permissions: read-all
 
 jobs:
   mirror-gitlab:
     runs-on: ubuntu-latest
     if: vars.GITLAB_MIRROR_ENABLED == 'true'
     steps:
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v4
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
         with:
           fetch-depth: 0
 
-      - name: Setup SSH known_hosts
-        run: |
-          mkdir -p ~/.ssh
-          chmod 700 ~/.ssh
-          echo "${{ env.GITLAB_HOST_KEY }}" >> ~/.ssh/known_hosts
-          chmod 600 ~/.ssh/known_hosts
-
-      - uses: webfactory/ssh-agent@a6f90b1f127823b31d4d4a8d96047790581349bd # v0.9.1
+      - uses: webfactory/ssh-agent@dc588b651fe13675774614f8e6a936a468676387 # v0.9.0
         with:
           ssh-private-key: ${{ secrets.GITLAB_SSH_KEY }}
 
       - name: Mirror to GitLab
-        id: mirror
         run: |
-          set -euo pipefail
-          REPO_NAME="${GITHUB_REPOSITORY#*/}"
-          REMOTE_URL="git@gitlab.com:hyperpolymath/${REPO_NAME}.git"
-
-          echo "::group::Adding remote"
-          git remote add gitlab "$REMOTE_URL" 2>/dev/null || git remote set-url gitlab "$REMOTE_URL"
-          echo "::endgroup::"
-
-          echo "::group::Pushing branches"
-          git push gitlab --all --force
-          echo "::endgroup::"
-
-          echo "::group::Pushing tags"
-          git push gitlab --tags --force
-          echo "::endgroup::"
-
-          echo "mirror_status=success" >> "$GITHUB_OUTPUT"
-
-      - name: Report failure
-        if: failure()
-        run: |
-          echo "::error::GitLab mirror failed. Check SSH key configuration and repository access."
-          exit 1
-
-  mirror-codeberg:
-    runs-on: ubuntu-latest
-    if: vars.CODEBERG_MIRROR_ENABLED == 'true'
-    steps:
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v4
-        with:
-          fetch-depth: 0
-
-      - name: Setup SSH known_hosts
-        run: |
-          mkdir -p ~/.ssh
-          chmod 700 ~/.ssh
-          echo "${{ env.CODEBERG_HOST_KEY }}" >> ~/.ssh/known_hosts
-          chmod 600 ~/.ssh/known_hosts
-
-      - uses: webfactory/ssh-agent@a6f90b1f127823b31d4d4a8d96047790581349bd # v0.9.1
-        with:
-          ssh-private-key: ${{ secrets.CODEBERG_SSH_KEY }}
-
-      - name: Mirror to Codeberg
-        id: mirror
-        run: |
-          set -euo pipefail
-          REPO_NAME="${GITHUB_REPOSITORY#*/}"
-          REMOTE_URL="git@codeberg.org:hyperpolymath/${REPO_NAME}.git"
-
-          echo "::group::Adding remote"
-          git remote add codeberg "$REMOTE_URL" 2>/dev/null || git remote set-url codeberg "$REMOTE_URL"
-          echo "::endgroup::"
-
-          echo "::group::Pushing branches"
-          git push codeberg --all --force
-          echo "::endgroup::"
-
-          echo "::group::Pushing tags"
-          git push codeberg --tags --force
-          echo "::endgroup::"
-
-          echo "mirror_status=success" >> "$GITHUB_OUTPUT"
-
-      - name: Report failure
-        if: failure()
-        run: |
-          echo "::error::Codeberg mirror failed. Check SSH key configuration and repository access."
-          exit 1
+          ssh-keyscan -t ed25519 gitlab.com >> ~/.ssh/known_hosts
+          git remote add gitlab git@gitlab.com:hyperpolymath/${{ github.event.repository.name }}.git || true
+          git push --force gitlab main
 
   mirror-bitbucket:
     runs-on: ubuntu-latest
     if: vars.BITBUCKET_MIRROR_ENABLED == 'true'
     steps:
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v4
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
         with:
           fetch-depth: 0
 
-      - name: Setup SSH known_hosts
-        run: |
-          mkdir -p ~/.ssh
-          chmod 700 ~/.ssh
-          echo "${{ env.BITBUCKET_HOST_KEY }}" >> ~/.ssh/known_hosts
-          chmod 600 ~/.ssh/known_hosts
-
-      - uses: webfactory/ssh-agent@a6f90b1f127823b31d4d4a8d96047790581349bd # v0.9.1
+      - uses: webfactory/ssh-agent@dc588b651fe13675774614f8e6a936a468676387 # v0.9.0
         with:
           ssh-private-key: ${{ secrets.BITBUCKET_SSH_KEY }}
 
       - name: Mirror to Bitbucket
-        id: mirror
         run: |
-          set -euo pipefail
-          REPO_NAME="${GITHUB_REPOSITORY#*/}"
-          REMOTE_URL="git@bitbucket.org:hyperpolymath/${REPO_NAME}.git"
+          ssh-keyscan -t ed25519 bitbucket.org >> ~/.ssh/known_hosts
+          git remote add bitbucket git@bitbucket.org:hyperpolymath/${{ github.event.repository.name }}.git || true
+          git push --force bitbucket main
 
-          echo "::group::Adding remote"
-          git remote add bitbucket "$REMOTE_URL" 2>/dev/null || git remote set-url bitbucket "$REMOTE_URL"
-          echo "::endgroup::"
+  mirror-codeberg:
+    runs-on: ubuntu-latest
+    if: vars.CODEBERG_MIRROR_ENABLED == 'true'
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+        with:
+          fetch-depth: 0
 
-          echo "::group::Pushing branches"
-          git push bitbucket --all --force
-          echo "::endgroup::"
+      - uses: webfactory/ssh-agent@dc588b651fe13675774614f8e6a936a468676387 # v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.CODEBERG_SSH_KEY }}
 
-          echo "::group::Pushing tags"
-          git push bitbucket --tags --force
-          echo "::endgroup::"
-
-          echo "mirror_status=success" >> "$GITHUB_OUTPUT"
-
-      - name: Report failure
-        if: failure()
+      - name: Mirror to Codeberg
         run: |
-          echo "::error::Bitbucket mirror failed. Check SSH key configuration and repository access."
-          exit 1
+          ssh-keyscan -t ed25519 codeberg.org >> ~/.ssh/known_hosts
+          git remote add codeberg git@codeberg.org:hyperpolymath/${{ github.event.repository.name }}.git || true
+          git push --force codeberg main
+
+  mirror-sourcehut:
+    runs-on: ubuntu-latest
+    if: vars.SOURCEHUT_MIRROR_ENABLED == 'true'
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+        with:
+          fetch-depth: 0
+
+      - uses: webfactory/ssh-agent@dc588b651fe13675774614f8e6a936a468676387 # v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SOURCEHUT_SSH_KEY }}
+
+      - name: Mirror to SourceHut
+        run: |
+          ssh-keyscan -t ed25519 git.sr.ht >> ~/.ssh/known_hosts
+          git remote add sourcehut git@git.sr.ht:~hyperpolymath/${{ github.event.repository.name }} || true
+          git push --force sourcehut main
+
+  mirror-disroot:
+    runs-on: ubuntu-latest
+    if: vars.DISROOT_MIRROR_ENABLED == 'true'
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+        with:
+          fetch-depth: 0
+
+      - uses: webfactory/ssh-agent@dc588b651fe13675774614f8e6a936a468676387 # v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.DISROOT_SSH_KEY }}
+
+      - name: Mirror to Disroot
+        run: |
+          ssh-keyscan -t ed25519 git.disroot.org >> ~/.ssh/known_hosts
+          git remote add disroot git@git.disroot.org:hyperpolymath/${{ github.event.repository.name }}.git || true
+          git push --force disroot main
+
+  mirror-gitea:
+    runs-on: ubuntu-latest
+    if: vars.GITEA_MIRROR_ENABLED == 'true'
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+        with:
+          fetch-depth: 0
+
+      - uses: webfactory/ssh-agent@dc588b651fe13675774614f8e6a936a468676387 # v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.GITEA_SSH_KEY }}
+
+      - name: Mirror to Gitea
+        run: |
+          ssh-keyscan -t ed25519 ${{ vars.GITEA_HOST }} >> ~/.ssh/known_hosts
+          git remote add gitea git@${{ vars.GITEA_HOST }}:hyperpolymath/${{ github.event.repository.name }}.git || true
+          git push --force gitea main
+
+  mirror-radicle:
+    runs-on: ubuntu-latest
+    if: vars.RADICLE_MIRROR_ENABLED == 'true'
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Radicle
+        run: |
+          curl -sSf https://radicle.xyz/install | sh
+          echo "$HOME/.radicle/bin" >> $GITHUB_PATH
+
+      - name: Mirror to Radicle
+        run: |
+          echo "${{ secrets.RADICLE_KEY }}" > ~/.radicle/keys/radicle
+          chmod 600 ~/.radicle/keys/radicle
+          rad sync --announce || echo "Radicle sync attempted"

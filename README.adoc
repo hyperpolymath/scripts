@@ -9,17 +9,10 @@ image:[License,link="https://github.com/hyperpolymath/palimpsest-license"]
 :toclevels: 2
 :icons: font
 
-Personal scripts and automation tools following the Hyperpolymath Standard.
+Personal scripts and automation tools
 
 toc::[]
 
-== Status
-
-[IMPORTANT]
-====
-**Repo project specification** - scripts will be uploaded shortly.
-
-Infrastructure and policies are in place; script implementations pending.
 ====
 
 == Planned Scripts
@@ -47,66 +40,7 @@ Infrastructure and policies are in place; script implementations pending.
 |System environment setup
 
 |`touchscreen_hunter_killer.sh`
-|Touchscreen calibration/management
-|===
-
-== Infrastructure
-
-=== Multi-Forge Mirroring
-
-This repository uses a hub-and-spoke model with GitHub as the hub:
-
-* **GitLab** - `gitlab.com/hyperpolymath/scripts`
-* **Codeberg** - `codeberg.org/hyperpolymath/scripts`
-* **Bitbucket** - `bitbucket.org/hyperpolymath/scripts`
-
-Features:
-
-* SSH host key verification (MITM protection)
-* SHA-pinned action dependencies
-* Instant sync on push/release via `.git-private-farm` dispatch
-
-=== Security Hardening
-
-* Ed25519 SSH keys only
-* Principle of least privilege (`contents: read`)
-* No dynamic host key acceptance
-
-== Language Policy
-
-This repo follows the **Hyperpolymath Standard** (see `.claude/CLAUDE.md`):
-
-[cols="1,2", options="header"]
-|===
-|Allowed |Use Case
-
-|Bash/POSIX Shell
-|Scripts, automation
-
-|Rust
-|Performance-critical tools, CLI
-
-|ReScript
-|Application code (compiles to JS)
-
-|Deno
-|JS runtime (replaces Node)
-
-|Gleam
-|Backend services
-
-|Guile Scheme
-|State/meta files
-|===
-
-[cols="1,1", options="header"]
-|===
-|Banned |Replacement
-
-|TypeScript |ReScript
-|Node.js/npm |Deno
-|Go |Rust
-|Python (general) |Rust/ReScript
+|Touchscreen eliminator
 |===
 
 == Usage
@@ -121,4 +55,5 @@ git clone git@github.com:hyperpolymath/scripts.git
 
 == License
 
-AGPL-3.0-or-later
+Palimpsest License (PMPL-1.0)
+2025 Jonathan D.A. Jewell

@@ -25,3 +25,8 @@ Usage
 Clone this repo:
 
 git clone git@gitlab.com\:hyperpolymath/scripts.git
+
+
+## Architecture
+
+See [TOPOLOGY.md](TOPOLOGY.md) for a visual architecture map and completion dashboard.

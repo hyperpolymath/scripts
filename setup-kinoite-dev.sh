@@ -302,6 +302,8 @@ DEVEOF
 set -euo pipefail
 
 # Deno (primary runtime per language policy)
+# WARNING: Pipe-to-shell is unsafe — download and verify first
+# WARNING: Pipe-to-shell is unsafe — download and verify first
 curl -fsSL https://deno.land/install.sh | sh
 export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
@@ -331,6 +333,8 @@ JSEOF
 set -euo pipefail
 
 # Rustup
+# WARNING: Pipe-to-shell is unsafe — download and verify first
+# WARNING: Pipe-to-shell is unsafe — download and verify first
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 source "$HOME/.cargo/env"
 
@@ -364,6 +368,8 @@ set -euo pipefail
 sudo dnf install -y erlang elixir rebar3
 
 # Gleam
+# WARNING: Pipe-to-shell is unsafe — download and verify first
+# WARNING: Pipe-to-shell is unsafe — download and verify first
 curl -fsSL https://gleam.run/install.sh | sh
 
 # Add to path

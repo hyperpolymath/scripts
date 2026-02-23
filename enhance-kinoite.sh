@@ -399,6 +399,8 @@ EOF
     log "Terminal setup..."
     cat << 'EOF'
 # Starship prompt (cross-shell)
+# WARNING: Pipe-to-shell is unsafe — download and verify first
+# WARNING: Pipe-to-shell is unsafe — download and verify first
 curl -sS https://starship.rs/install.sh | sh
 
 # Add to ~/.bashrc or ~/.zshrc:

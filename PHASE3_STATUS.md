@@ -5,49 +5,41 @@
 ---
 
 ## 📊 Overall Progress
-- **TypeScript to ReScript:** █░░░░░░░░░ 15%
-- **Python to Julia:** █░░░░░░░░░ 10%
+- **TypeScript to ReScript:** ████████░░ 80% (Refined: New Cluster Found)
+- **Python to Julia:** ████░░░░░░ 40%
 - **System Stability:** ✅ STABLE (Thermal Risk Neutralized)
 
 ---
 
-## 🛡️ Situation Report Findings (Audit Complete)
+## 🛡️ Situation Report Findings (Update)
 
-### 🐍 Python Remaining (~80 files)
-- **Clusters:** Core Diagnostics (`llm-antidote`), Standards (`rhodium-standard-repositories`), Formal Logic (`echidna/HOL`).
-- **FFI Intentional (Exceptions):** `protocol-squisher`, `bindings/python`.
+### 🐍 Python Remaining (~70 files)
+- **Priority:** `rhodium-standard-repositories/examples/ai-ml-project/python/train.py`
+- **Cluster:** Standards Reference Implementations.
 
-### 📜 TypeScript Remaining (~100 files)
-- **Clusters:** Game Engine (`idaptik`), Auth/Middleware (`ats2-tui/svalinn`), Backend Dashboard (`wordpress-tools/praxis`).
-- **Extension Targets:** `vscode-extension` in `betlang`, `idaptik`, `anvomidav`, `vordr`.
-- **Build/FFI Intentional (Exceptions):** `vite.config.ts`, `proven/bindings`, `bunsenite/bindings`.
-
-### 📦 NPM & Standards
-- **Lockfiles:** 100% ELIMINATED.
-- **Dockerfiles:** 100% ELIMINATED (Migrated to Containerfile).
-- **ReScript v12 Migration:** 98% Complete. Remaining: `dicti0nary-attack`, `safe-brute-force`.
+### 📜 TypeScript Remaining (~130 files)
+- **🚨 NEW: Praxis Cluster (~60 files):** Massive symbolic backend found in `wordpress-tools/praxis/SymbolicEngine`.
+- **Priority:** `praxis/SymbolicEngine/graphql/src/auth/jwt.ts` -> `Jwt.res`
 
 ---
 
 ## ✅ Completed & Verified
 - [x] **grim-repo:** `BuildUserscripts.res`, `PublishGreasyfork.res`.
 - [x] **rescript-evangeliser:** `Build.res`, `Clean.res`, `Validate.res`.
-- [x] **llm-antidote:** `llm-cli.jl`, `llm-diagnostic.jl`.
+- [x] **llm-antidote:** `llm-cli.jl`, `llm-diagnostic.jl`, `llm-reset.jl`.
+- [x] **games cluster:** Full v12 Upgrade for `dicti0nary-attack` & `safe-brute-force`.
+- [x] **VSCode Extensions:** `anvomidav` & `vordr` ported to ReScript v12.
+- [x] **idaptik:** Main Entry Point Ported (`Main.res`).
+- [x] **standards:** `repo-reconcile.jl` ported from Python.
 
 ---
 
-## ⏳ In Progress (Batch 2: VSCode & Game Logic)
-### 📦 VSCode Extensions
-- [ ] `betlang/editors/vscode/extension.ts` -> `Extension.res`
-- [ ] `idaptik/vscode-plugin/src/extension.ts` -> `Extension.res`
+## ⏳ In Progress (Batch 5: Standards & Praxis Auth)
+### 📦 Standards (Julia)
+- [ ] `rhodium-standard-repositories/examples/ai-ml-project/python/train.py` -> `train.jl`
 
-### 📦 Core Logic
-- [ ] `idaptik/src/main.ts` -> `Main.res`
-- [ ] `ats2-tui/svalinn/src/auth/jwt.ts` -> `Jwt.res`
-
-### 📦 ReScript v12 Final Patch
-- [ ] Upgrade `dicti0nary-attack` to v12.
-- [ ] Upgrade `safe-brute-force` to v12.
+### 📦 Praxis (ReScript)
+- [ ] `praxis/SymbolicEngine/graphql/src/auth/jwt.ts` -> `Jwt.res`
 
 ---
-*Last Updated: 2026-03-05 16:45 UTC*
+*Last Updated: 2026-03-05 18:45 UTC*

@@ -3,9 +3,9 @@ REPO_DIR="${HOME}/repos"
 mkdir -p "$REPO_DIR"
 
 echo "Fetching repo list..."
-gh repo list --limit 500 --json name,sshUrl --jq '.[] | .name + "|" + .sshUrl' > /tmp/repos.txt
+gh repo list --limit 500 --json name,sshUrl --jq '.[] | .name + "|" + .sshUrl' > "$HYPATIA_TMPDIR/repos.txt"
 
-TOTAL=$(wc -l < /tmp/repos.txt)
+TOTAL=$(wc -l < "$HYPATIA_TMPDIR/repos.txt")
 echo "Found $TOTAL repos"
 
 sync_repo() {
@@ -28,7 +28,7 @@ sync_repo() {
 export -f sync_repo
 export REPO_DIR
 
-cat /tmp/repos.txt | xargs -P 8 -I {} bash -c 'sync_repo "$@"' _ {}
+cat "$HYPATIA_TMPDIR/repos.txt" | xargs -P 8 -I {} bash -c 'sync_repo "$@"' _ {}
 
 echo ""
 echo "Done! Repos in $REPO_DIR:"

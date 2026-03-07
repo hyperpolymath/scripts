@@ -9,7 +9,7 @@ if [[ -z "$REPO" ]]; then
     exit 1
 fi
 
-WIKI_DIR="/tmp/wiki-init-$$"
+WIKI_DIR=""$HYPATIA_TMPDIR/wiki-init-"$$"
 mkdir -p "$WIKI_DIR"
 cd "$WIKI_DIR" || exit 1
 

@@ -1,58 +1,232 @@
 image:https://img.shields.io/badge/License-PMPL--1.0-blue.svg[License: PMPL-1.0,link="https://github.com/hyperpolymath/palimpsest-license"]
 // SPDX-License-Identifier: PMPL-1.0-or-later
-// SPDX-FileCopyrightText: 2025 Jonathan D.A. Jewell
+// SPDX-FileCopyrightText: 2025-2026 Jonathan D.A. Jewell
 
 = Hyperpolymath Scripts
 
 :toc: macro
-:toclevels: 2
+:toclevels: 3
 :icons: font
+:source-highlighter: rouge
 
-Personal scripts and automation tools
+Infrastructure automation, repository management, and system configuration scripts for the Hyperpolymath ecosystem (~500+ repos across GitHub, GitLab, Codeberg, and Bitbucket).
 
 toc::[]
 
-====
+== Overview
 
-== Planned Scripts
+This repository contains scripts for:
+
+* **System configuration** — Fedora Kinoite/Atomic hardening, NVIDIA setup, performance tuning
+* **Repository management** — Multi-forge sync, policy auditing, RSR standardisation
+* **GitHub Actions validation** — CodeQL, SPDX, permissions, SHA-pin checks
+* **Pre-commit hooks** — Automated compliance enforcement
+* **Contractiles** — Self-validating operational templates (must/trust/dust/lust/k9)
+
+== System Scripts
 
 [cols="1,3", options="header"]
 |===
 |Script |Purpose
 
-|`asdfman.sh`
-|Manage asdf plugins and versions
+|`enhance-kinoite.sh`
+|Comprehensive Fedora Kinoite hardening: btrfs compression, I/O scheduling, vm.swappiness, security policies
 
-|`init_bashrc_three_ply.sh`
-|Modular bashrc setup (three-layer architecture)
+|`setup-kinoite-dev.sh`
+|Developer environment setup: nerdctl, distrobox, Deno, asdf integration, language toolchains
 
-|`k-check.sh`
-|Kinoite cluster validation
+|`nvidia-auto-setup.sh`
+|Automated NVIDIA driver detection and installation for Fedora Atomic
 
-|`k-intune.sh`
-|Kinoite tuning scripts
+|`system-optimize.sh`
+|One-shot system performance optimisation (kernel params, filesystem, memory)
 
-|`langstrap.sh`
-|Mass language install utilities
+|`scheduled-optimize.sh`
+|Scheduled variant of system-optimize for cron/systemd timers
 
-|`sysenv.sh`
-|System environment setup
+|`migrate-to-eclipse.sh`
+|Multi-phase storage migration: cache clearing, directory relocation, symlink creation for Eclipse drive
 
-|`touchscreen_hunter_killer.sh`
-|Touchscreen eliminator
+|`reboot.sh`
+|Managed reboot with pre-reboot cleanup and logging
+
+|`cloud-mount-watcher.sh`
+|Monitor cloud mount points for health and availability
 |===
+
+== Repository Management
+
+[cols="1,3", options="header"]
+|===
+|Script |Purpose
+
+|`sync-repos-parallel.sh`
+|Parallel GitHub repository synchronisation (8 workers via xargs)
+
+|`sync-github-repos.sh`
+|Single-threaded GitHub sync for sequential operations
+
+|`sync-repos.sh`
+|General-purpose repository sync wrapper
+
+|`set-mirror-secrets.sh`
+|Configure multi-forge mirror secrets (GitHub -> GitLab/Bitbucket/Codeberg)
+
+|`repo_auditor.exs`
+|Elixir-based policy auditor with auto-fix: cruft cleanup, Containerfile enforcement, language violations, Justfile RISC-V targets
+
+|`restructure-repos.jl`
+|Julia script for RSR (Rhodium Standard Repository) directory standardisation
+
+|`standardize-repos.jl`
+|Julia script for batch repository standards enforcement
+|===
+
+== GitHub Integration
+
+[cols="1,3", options="header"]
+|===
+|Script |Purpose
+
+|`create-welcome-discussions.sh`
+|Automate GitHub Discussions creation across repositories
+
+|`init-wiki.sh`
+|GitHub Wiki initialisation and templating
+
+|`bootstrap-workers-rescript.sh`
+|Cloudflare Workers bootstrapper with ReScript integration
+
+|`check-changes.sh`
+|Git status checker for CI/CD pipelines
+
+|`reboot-tracker.ts`
+|Deno script to track system reboot reasons with journalctl/dmesg capture
+|===
+
+== GitHub Analysis Tools
+
+Scripts in `github-analysis/` for CI/CD validation:
+
+[cols="1,3", options="header"]
+|===
+|Script |Purpose
+
+|`analyze-failures.sh`
+|Aggregate CI/CD failure analysis across workflows
+
+|`analyze-failures-by-repo.sh`
+|Per-repository CI/CD failure breakdown
+
+|`check-codeql-actions.sh`
+|Validate CodeQL workflow configuration
+
+|`check-editorconfig.sh`
+|Verify EditorConfig compliance
+
+|`check-pages-status.sh`
+|Check GitHub Pages deployment status
+|===
+
+== Pre-commit Hooks
+
+Validation hooks in `hooks/` for automated compliance enforcement:
+
+[cols="1,3", options="header"]
+|===
+|Hook |Purpose
+
+|`validate-spdx.sh`
+|Verify SPDX license headers on all source files
+
+|`validate-permissions.sh`
+|Check GitHub Actions workflow permissions are explicit
+
+|`validate-sha-pins.sh`
+|Verify all Actions dependencies are SHA-pinned
+
+|`validate-codeql.sh`
+|Validate CodeQL configuration matches repository languages
+|===
+
+== Contractiles
+
+Self-validating operational templates in `contractiles/`. See the link:contractiles/README.adoc[Contractiles README] for details.
+
+[cols="1,3", options="header"]
+|===
+|Type |Purpose
+
+|`must/`
+|Mandatory operational contracts — invariants that must always hold
+
+|`trust/`
+|Trust boundary definitions — security perimeter contracts
+
+|`dust/`
+|Deprecation contracts — managed removal of old patterns
+
+|`lust/`
+|Aspiration contracts — desired future state definitions
+
+|`k9/`
+|Nickel-based configuration validators with three security levels (Kennel/Yard/Hunt)
+|===
+
+== Utility Scripts
+
+[cols="1,3", options="header"]
+|===
+|Script |Purpose
+
+|`organize_bookmarks.py`
+|Browser bookmark organisation and deduplication
+
+|`organize_edge_bookmarks.py`
+|Microsoft Edge bookmark management
+
+|`generate_bookmarks_html.py`
+|HTML bookmark export for backup and portability
+|===
+
+NOTE: Python scripts are legacy. New utility scripts should use Julia or Rust per language policy.
 
 == Usage
 
 [source,bash]
 ----
 # Clone from any forge
+git clone git@github.com:hyperpolymath/scripts.git
 git clone git@gitlab.com:hyperpolymath/scripts.git
 git clone git@codeberg.org:hyperpolymath/scripts.git
-git clone git@github.com:hyperpolymath/scripts.git
+
+# List available just recipes
+just
+
+# Run the repository auditor
+elixir repo_auditor.exs
+
+# Sync all repos in parallel
+./sync-repos-parallel.sh
+
+# Install pre-commit hooks
+cp hooks/* /path/to/repo/.git/hooks/
 ----
+
+== PanLL Integration
+
+This repository provides infrastructure scripts that support
+link:https://github.com/hyperpolymath/panll[PanLL] indirectly:
+
+* Repository auditing ensures PanLL modules meet RSR compliance
+* Pre-commit hooks validate PanLL schemata files
+* Multi-forge sync keeps PanLL mirrors current
+* Contractile validators (k9) can validate PanLL workspace configurations
+
+Direct PanLL panel scripts (schemata generation, workspace layout validation) are maintained within the PanLL monorepo itself.
 
 == License
 
-Palimpsest License (PMPL-1.0)
-2025 Jonathan D.A. Jewell
+link:LICENSE[Palimpsest License (PMPL-1.0-or-later)]
+
+Copyright (c) 2025-2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>

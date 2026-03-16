@@ -5,10 +5,21 @@
 [metadata]
 project = "scripts"
 version = "0.1.0"
-last-updated = "2026-03-15"
+last-updated = "2026-03-16"
 status = "active"
 
 [project-context]
 name = "scripts"
-completion-percentage = 0
+completion-percentage = 15
 phase = "In development"
+
+[critical-next-actions]
+actions = [
+  "Continue expanding script documentation",
+  "Add usage examples to README",
+]
+
+[session-history]
+entries = [
+  { date = "2026-03-16", description = "README expanded with detailed script descriptions. Fixed SPDX license headers across files." },
+]

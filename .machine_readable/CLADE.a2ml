@@ -1,0 +1,26 @@
+# SPDX-License-Identifier: PMPL-1.0-or-later
+# Clade declaration — part of the gv-clade-index registry
+# See: https://github.com/hyperpolymath/gv-clade-index
+
+[identity]
+uuid = "1df0b387-36cc-518e-aba0-09fb8d9c779f"
+primary-forge = "github"
+primary-owner = "hyperpolymath"
+canonical-name = "scripts"
+prefixed-name = "ix-scripts"
+
+[clade]
+primary = "ix"
+secondary = []
+assigned = "2026-03-16"
+rationale = ""
+
+[forges]
+github = "hyperpolymath/scripts"
+gitlab = "hyperpolymath/scripts"
+bitbucket = "hyperpolymath/scripts"
+
+[lineage]
+type = "standalone"
+parent = "General automation scripts"
+born = "2026-03-16"

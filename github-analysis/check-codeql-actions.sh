@@ -1,5 +1,5 @@
 #!/bin/bash
-# SPDX-License-Identifier: AGPL-3.0-or-later
+# SPDX-License-Identifier: PMPL-1.0-or-later
 # Find repos using 'actions' language in CodeQL (which is invalid)
 
 repos=$(gh repo list hyperpolymath --limit 50 --json name -q ".[].name")

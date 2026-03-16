@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: AGPL-3.0-or-later
+# SPDX-License-Identifier: PMPL-1.0-or-later
 # Repository Standardization Script
 # Ensures all repos have required dotfiles, SCM files, and Justfile-Mustfile system
 
@@ -35,7 +35,7 @@ const SATELLITE_PATTERNS = Dict(
 # ============================================================================
 
 const GITIGNORE = """
-# SPDX-License-Identifier: AGPL-3.0-or-later
+# SPDX-License-Identifier: PMPL-1.0-or-later
 # RSR-compliant .gitignore
 
 # OS & Editor
@@ -119,7 +119,7 @@ htmlcov/
 """
 
 const GITATTRIBUTES = """
-# SPDX-License-Identifier: AGPL-3.0-or-later
+# SPDX-License-Identifier: PMPL-1.0-or-later
 # RSR-compliant .gitattributes
 
 * text=auto eol=lf
@@ -179,7 +179,7 @@ flake.lock  text eol=lf -diff
 """
 
 const EDITORCONFIG = """
-# SPDX-License-Identifier: AGPL-3.0-or-later
+# SPDX-License-Identifier: PMPL-1.0-or-later
 # https://editorconfig.org
 
 root = true
@@ -250,7 +250,7 @@ indent_style = tab
 """
 
 const TOOL_VERSIONS = """
-# SPDX-License-Identifier: AGPL-3.0-or-later
+# SPDX-License-Identifier: PMPL-1.0-or-later
 # asdf version management
 # Run 'asdf install' to install all tools
 
@@ -319,7 +319,7 @@ When updating these files:
 
 function meta_scm_template(project::String)
     return """
-;; SPDX-License-Identifier: AGPL-3.0-or-later
+;; SPDX-License-Identifier: PMPL-1.0-or-later
 ;; META.scm - Architecture Decisions and Development Practices
 ;; $(project)
 
@@ -377,7 +377,7 @@ end
 function state_scm_template(project::String)
     today = Dates.format(now(), "yyyy-mm-dd")
     return """
-;; SPDX-License-Identifier: AGPL-3.0-or-later
+;; SPDX-License-Identifier: PMPL-1.0-or-later
 ;; STATE.scm - Project State and Progress
 ;; $(project)
 
@@ -475,7 +475,7 @@ function ecosystem_scm_template(project::String; parent=nothing, satellites=Stri
     end
 
     return """
-;; SPDX-License-Identifier: AGPL-3.0-or-later
+;; SPDX-License-Identifier: PMPL-1.0-or-later
 ;; ECOSYSTEM.scm - Ecosystem Positioning
 ;; $(project)
 ;;
@@ -510,7 +510,7 @@ end
 
 function playbook_scm_template(project::String)
     return """
-;; SPDX-License-Identifier: AGPL-3.0-or-later
+;; SPDX-License-Identifier: PMPL-1.0-or-later
 ;; PLAYBOOK.scm - Executable Plans and Procedures
 ;; $(project)
 
@@ -528,7 +528,7 @@ end
 
 function agentic_scm_template(project::String)
     return """
-;; SPDX-License-Identifier: AGPL-3.0-or-later
+;; SPDX-License-Identifier: PMPL-1.0-or-later
 ;; AGENTIC.scm - AI Agent Operational Gating
 ;; $(project)
 
@@ -547,7 +547,7 @@ end
 
 function neurosym_scm_template(project::String)
     return """
-;; SPDX-License-Identifier: AGPL-3.0-or-later
+;; SPDX-License-Identifier: PMPL-1.0-or-later
 ;; NEUROSYM.scm - Symbolic Semantics and Proof Obligations
 ;; $(project)
 
@@ -565,7 +565,7 @@ end
 
 function justfile_template(project::String)
     return """
-# SPDX-License-Identifier: AGPL-3.0-or-later
+# SPDX-License-Identifier: PMPL-1.0-or-later
 # $(project) - Justfile
 # https://just.systems/man/en/
 
@@ -662,7 +662,7 @@ ci: quality validate-rsr
 end
 
 const MUSTFILE = """
-# SPDX-License-Identifier: AGPL-3.0-or-later
+# SPDX-License-Identifier: PMPL-1.0-or-later
 # Mustfile - deployment state contract
 # See: https://github.com/hyperpolymath/mustfile
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# SPDX-License-Identifier: AGPL-3.0-or-later
+# SPDX-License-Identifier: PMPL-1.0-or-later
 # Kinoite Developer Environment Setup
 # Uses: nerdctl, distrobox, flatpak
 # Follows: Hyperpolymath Language Policy (ReScript, Deno, Rust, Gleam)

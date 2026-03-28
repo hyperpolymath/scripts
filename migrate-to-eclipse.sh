@@ -5,7 +5,7 @@
 set -euo pipefail
 
 ECLIPSE="/run/media/hyper/eclipse"
-HOME_DIR="/var/home/hyper"
+HOME_DIR="/var$HOME"
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'

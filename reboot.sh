@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # scripts/reboot.sh — Wrapper to track reboot/shutdown reason before execution
 # Usage:
-#   alias reboot='bash /var/mnt/eclipse/repos/scripts/reboot.sh'
-#   alias shutdown='bash /var/mnt/eclipse/repos/scripts/reboot.sh --shutdown'
+#   alias reboot='bash /var$REPOS_DIR/scripts/reboot.sh'
+#   alias shutdown='bash /var$REPOS_DIR/scripts/reboot.sh --shutdown'
 
 DENO_BIN="/home/hyper/.deno/bin/deno"
-TRACKER_TS="/var/mnt/eclipse/repos/scripts/reboot-tracker.ts"
+TRACKER_TS="/var$REPOS_DIR/scripts/reboot-tracker.ts"
 
 # Parse args
 IS_SHUTDOWN=false
@@ -16,7 +16,7 @@ for arg in "$@"; do
 done
 
 # Ensure log directory exists
-mkdir -p /var/mnt/eclipse/repos/monitoring/reboot-tracker/logs
+mkdir -p /var$REPOS_DIR/monitoring/reboot-tracker/logs
 
 if [ -f "$TRACKER_TS" ]; then
     if [[ "$IS_SHUTDOWN" == true ]]; then

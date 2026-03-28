@@ -32,7 +32,7 @@ try:
             theme = categorize(line)
             all_bookmarks.setdefault(theme, []).append(line.strip())
 
-    with open("/var/mnt/eclipse/repos/organized_bookmarks.md", "w") as f:
+    with open("/var$REPOS_DIR/organized_bookmarks.md", "w") as f:
         f.write("# Refined Organized Bookmarks\n\n")
         sorted_themes = sorted([t for t in all_bookmarks.keys() if t != "Uncategorized"]) + ["Uncategorized"]
         for theme in sorted_themes:

@@ -31,7 +31,7 @@ try:
             theme = categorize(line)
             all_bookmarks.setdefault(theme, []).append(line.strip())
 
-    html_path = "/var/mnt/eclipse/repos/organized_bookmarks.html"
+    html_path = "/var$REPOS_DIR/organized_bookmarks.html"
     with open(html_path, "w") as f:
         f.write('<!DOCTYPE NETSCAPE-Bookmark-file-1>\n')
         f.write('<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">\n')

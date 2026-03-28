@@ -124,7 +124,7 @@ end
 
 # Example usage when run as a script:
 # Repos to audit
-repos_root = "/var/mnt/eclipse/repos"
+repos_root = "/var$REPOS_DIR"
 
 File.ls!(repos_root)
 |> Enum.map(&Path.join(repos_root, &1))

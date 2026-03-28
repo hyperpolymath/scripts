@@ -4,7 +4,7 @@
 
 set -euo pipefail
 
-REPOS_BASE="${REPOS_BASE:-/var/mnt/eclipse/repos}"
+REPOS_BASE="${REPOS_BASE:-/var$REPOS_DIR}"
 LOG_FILE="/tmp/language-compliance-$(date +%Y%m%d).log"
 
 echo "=== Language Compliance Check ===" | tee "$LOG_FILE"

@@ -1,5 +1,5 @@
 #!/bin/bash
-WORKSPACE="/var/mnt/eclipse/repos"
+WORKSPACE="/var$REPOS_DIR"
 
 find "$WORKSPACE" -maxdepth 2 -name ".git" -type d | while read -r gitdir; do
     repo_path=$(dirname "$gitdir")

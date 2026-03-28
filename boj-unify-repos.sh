@@ -4,7 +4,7 @@
 # Safely attaches repositories to the BoJ Server / Casket build pipeline.
 # Replaces legacy Jekyll workflows with the unified boj-build trigger.
 
-WORKSPACE="/var/mnt/eclipse/repos"
+WORKSPACE="/var$REPOS_DIR"
 
 find "$WORKSPACE" -maxdepth 2 -name ".git" -type d | while read -r gitdir; do
     repo_path=$(dirname "$gitdir")

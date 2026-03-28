@@ -4,7 +4,7 @@
 # Safely prunes and deletes merged branches across all repositories in the workspace.
 # Excludes protected branches: main, master, gh-pages, and branches containing 'docs'.
 
-WORKSPACE="/var/mnt/eclipse/repos"
+WORKSPACE="/var$REPOS_DIR"
 PROTECTED_PATTERN="^(main|master|gh-pages|.*docs.*)$"
 REMOTE_EXCLUDE_PATTERN="^(origin/HEAD|origin/main|origin/master|origin/gh-pages|.*docs.*)$"
 

@@ -3,7 +3,7 @@
 # release_unification.sh
 # Performs a mass commit and push for the Big Unification across all repositories.
 
-WORKSPACE="/var/mnt/eclipse/repos"
+WORKSPACE="/var$REPOS_DIR"
 COMMIT_MSG="chore: Big Unification — attach to BoJ Server / Casket architecture"
 
 echo "Starting mass push for the Big Unification..."

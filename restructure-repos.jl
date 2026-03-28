@@ -7,7 +7,7 @@
 
 using Dates
 
-const REPOS_DIR = "/var/home/hyper/repos"
+const REPOS_DIR = "/var$HOME/repos"
 
 # =============================================================================
 # Directory Structure Constants
@@ -670,7 +670,7 @@ function restructure_repo(repo_path::String; dry_run=false)
 
         # docs/machines/
         write_if_missing(joinpath(repo_path, "docs", "machines", "MACHINE-READABLE-STRUCTURE.adoc"),
-                        read("/var/home/hyper/scripts/templates/docs/machines/MACHINE-READABLE-STRUCTURE.adoc", String))
+                        read("/var$HOME/scripts/templates/docs/machines/MACHINE-READABLE-STRUCTURE.adoc", String))
 
         # 6SCM files
         write_if_missing(joinpath(repo_path, ".machine_readable", "6scm", "META.scm"),

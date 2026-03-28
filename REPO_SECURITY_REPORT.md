@@ -1,6 +1,6 @@
 # 🛡️ Repository Security & Policy Report
 **Date:** 2026-03-05  
-**Scope:** 157 Repositories in `/var/mnt/eclipse/repos/`
+**Scope:** 157 Repositories in `/var$REPOS_DIR/`
 
 ---
 

@@ -61,9 +61,9 @@ fi
 
 # Cloud mount definitions: remote_name:mount_point:service_name
 declare -a MOUNTS=(
-    "gdrive:/var/home/hyper/Cloud/GoogleDrive:rclone-gdrive.service"
-    "onedrive:/var/home/hyper/Cloud/OneDrive:rclone-onedrive.service"
-    "dropbox:/var/home/hyper/Cloud/Dropbox:rclone-dropbox.service"
+    "gdrive:/var$HOME/Cloud/GoogleDrive:rclone-gdrive.service"
+    "onedrive:/var$HOME/Cloud/OneDrive:rclone-onedrive.service"
+    "dropbox:/var$HOME/Cloud/Dropbox:rclone-dropbox.service"
 )
 
 repaired=0

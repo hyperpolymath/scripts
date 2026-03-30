@@ -314,13 +314,13 @@ deno --version
 # ReScript via Deno
 cat > ~/.local/bin/rescript << 'EOF'
 #!/bin/sh
-exec deno run -A npm:rescript "$@"
+exec deno run --allow-read --allow-write --allow-env --allow-run --allow-net npm:rescript "$@"
 EOF
 chmod +x ~/.local/bin/rescript
 
 # Useful Deno tools
-deno install -Agf --name=fresh https://deno.land/x/fresh/init.ts
-deno install -Agf jsr:@anthropic-ai/claude-code
+deno install --allow-read --allow-write --allow-env --allow-net --allow-run -gf --name=fresh https://deno.land/x/fresh/init.ts
+deno install --allow-read --allow-write --allow-env --allow-net --allow-run -gf jsr:@anthropic-ai/claude-code
 
 echo "ReScript + Deno environment ready!"
 echo "Remember: NO npm/node/bun in production (per language policy)"

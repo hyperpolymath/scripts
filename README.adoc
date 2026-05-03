@@ -100,7 +100,7 @@ This repository contains scripts for:
 |`check-changes.sh`
 |Git status checker for CI/CD pipelines
 
-|`reboot-tracker.ts`
+|`reboot-tracker.mjs`
 |Deno script to track system reboot reasons with journalctl/dmesg capture
 |===
 

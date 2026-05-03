@@ -1,4 +1,4 @@
-// scripts/reboot-tracker.ts
+// scripts/reboot-tracker.mjs
 import { join } from "https://deno.land/std@0.224.0/path/mod.ts";
 import { parseArgs } from "https://deno.land/std@0.224.0/cli/parse_args.ts";
 
@@ -17,7 +17,7 @@ const BASE_DIR = "monitoring/reboot-tracker/logs";
 const LOG_FILE = join(BASE_DIR, "reboot-reasons.json");
 const SNAPSHOT_DIR = join(BASE_DIR, "snapshots");
 
-async function captureLogs(timestamp: string): Promise<string | null> {
+async function captureLogs(timestamp) {
   const filename = `snapshot-${timestamp.replace(/[:.]/g, "-")}.log`;
   const filepath = join(SNAPSHOT_DIR, filename);
 

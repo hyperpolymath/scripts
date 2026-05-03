@@ -5,7 +5,7 @@
 #   alias shutdown='bash /var$REPOS_DIR/scripts/reboot.sh --shutdown'
 
 DENO_BIN="/home/hyper/.deno/bin/deno"
-TRACKER_TS="/var$REPOS_DIR/scripts/reboot-tracker.ts"
+TRACKER_TS="/var$REPOS_DIR/scripts/reboot-tracker.mjs"
 
 # Parse args
 IS_SHUTDOWN=false

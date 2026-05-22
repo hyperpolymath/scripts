@@ -1,5 +1,5 @@
 #!/bin/bash
-# SPDX-License-Identifier: PMPL-1.0-or-later
+# SPDX-License-Identifier: MPL-2.0
 # Sync all git repos in the canonical hyperpolymath repos directory.
 # Fetches all remotes, then attempts a fast-forward pull.
 # Reports errors per-repo without stopping the batch.

@@ -1,5 +1,5 @@
 #!/bin/bash
-# SPDX-License-Identifier: PMPL-1.0-or-later
+# SPDX-License-Identifier: MPL-2.0
 # Analyze GitHub workflow failures across hyperpolymath org
 
 repos=$(gh repo list hyperpolymath --limit 50 --json name -q ".[].name")

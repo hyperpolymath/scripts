@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: PMPL-1.0-or-later
+# SPDX-License-Identifier: MPL-2.0
 # organize_bookmarks.jl — Categorize Firefox+Edge bookmarks into themed Markdown
 # Migrated from Python (organize_bookmarks.py)
 

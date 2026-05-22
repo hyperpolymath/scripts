@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: PMPL-1.0-or-later
+# SPDX-License-Identifier: MPL-2.0
 # organize_edge_bookmarks.jl — Categorize bookmarks and write Edge Bookmarks JSON
 # Migrated from Python (organize_edge_bookmarks.py)
 

@@ -1,5 +1,5 @@
 #!/bin/bash
-# SPDX-License-Identifier: PMPL-1.0-or-later
+# SPDX-License-Identifier: MPL-2.0
 # Check which repos have GitHub Pages enabled
 
 echo "=== PAGES NOT ENABLED (will fail) ==="

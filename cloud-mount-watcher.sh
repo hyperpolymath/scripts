@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# SPDX-License-Identifier: PMPL-1.0-or-later
+# SPDX-License-Identifier: MPL-2.0
 # cloud-mount-watcher.sh - Detects failed rclone cloud mounts and auto-remounts
 # Checks: mount presence, FUSE responsiveness, rclone process health
 # Runs via systemd timer every 60 seconds

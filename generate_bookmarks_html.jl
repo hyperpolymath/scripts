@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: PMPL-1.0-or-later
+# SPDX-License-Identifier: MPL-2.0
 # generate_bookmarks_html.jl — Generate Netscape bookmark HTML from categorized bookmarks
 # Migrated from Python (generate_bookmarks_html.py)
 

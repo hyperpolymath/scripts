@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 ---
 name: vscode-rescript-ext-migrator
 description: Procedural guidance and idiomatic bindings for migrating VSCode extensions from TypeScript to ReScript v12. Use when porting extension.ts files or implementing new VSCode features in ReScript.

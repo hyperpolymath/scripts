@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MPL-2.0
+# Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
 defmodule RepoAuditor.RuleEngine do
   @moduledoc """
   AI-driven repository auditor enforcing hyperpolymath mandates.

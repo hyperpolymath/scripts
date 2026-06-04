@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # 🚀 Phase 3: Language Hardening Status - FINAL REPORT
 **Date:** 2026-03-05
 **Status:** ✅ COMPLETED (Primary Clusters)

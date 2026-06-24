@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # 🛡️ Repository Security & Policy Report
 **Date:** 2026-03-05  
 **Scope:** 157 Repositories in `/var$REPOS_DIR/`

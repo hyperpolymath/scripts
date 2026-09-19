@@ -104,7 +104,7 @@ This project is licensed under https://mozilla.org/MPL/2.0/[MPL-2.0] with the ht
 
 == Contributing
 
-See link:CONTRIBUTING.md[CONTRIBUTING.md] for guidelines.
+See link:.github/CONTRIBUTING.md[CONTRIBUTING.md] for guidelines.
 """
 
 const ROADMAP_ADOC_TEMPLATE = """
@@ -140,7 +140,7 @@ See `.machine_readable/6scm/STATE.scm` for current project state.
 
 == Contributing
 
-See link:CONTRIBUTING.md[CONTRIBUTING.md] for how to contribute to the roadmap.
+See link:.github/CONTRIBUTING.md[CONTRIBUTING.md] for how to contribute to the roadmap.
 """
 
 const JUSTFILE_TEMPLATE = """

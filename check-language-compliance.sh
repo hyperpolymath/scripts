@@ -5,7 +5,15 @@
 set -euo pipefail
 
 REPOS_BASE="${REPOS_BASE:-/var$REPOS_DIR}"
-LOG_FILE="/tmp/language-compliance-$(date +%Y%m%d).log"
+# Per-user XDG state, not /tmp: this log is a kept, dated compliance report
+# (tee'd for the whole run, not throwaway), and a world-writable /tmp path
+# with a predictable name lets another local user pre-create or tamper with
+# it (CWE-377). Not a launcher, so no PID file and no launch-scaffolder/
+# segment here.
+STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/scripts/language-compliance"
+mkdir -p "$STATE_DIR"
+chmod 0700 "$STATE_DIR"
+LOG_FILE="$STATE_DIR/$(date +%Y%m%d).log"
 
 echo "=== Language Compliance Check ===" | tee "$LOG_FILE"
 echo "Started: $(date)" | tee -a "$LOG_FILE"

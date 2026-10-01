@@ -233,3 +233,14 @@ Direct PanLL panel scripts (schemata generation, workspace layout validation) ar
 This project is licensed under the Mozilla Public License, v. 2.0. See the `LICENSE` file for details.
 
 SPDX-License-Identifier: CC-BY-SA-4.0
+== Language Compliance Reports
+
+`check-language-compliance.sh` requires Bash and Julia (using only Julia's
+standard library). It writes a dated report under
+`${XDG_STATE_HOME}/scripts/language-compliance` when `XDG_STATE_HOME` is absolute,
+or `$HOME/.local/state/scripts/language-compliance` otherwise.
+The logger rejects symlinks in the state path and requires the state base,
+`scripts`, and `language-compliance` directories to belong to the invoking user.
+Reports are private (directory mode `0700`, log mode `0600`).
+
+Run the logging regression checks with `bash tests/check-language-compliance.sh`.

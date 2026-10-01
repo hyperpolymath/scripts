@@ -8,10 +8,17 @@ trap 'rm -rf -- "$fixture"' EXIT
 logger="$repo_dir/check-language-compliance-log.jl"
 log_name="$(date +%Y%m%d).log"
 
+# Print all arguments as a failure message to stderr and exit the test with status 1.
 fail() { echo "FAIL: $*" >&2; exit 1; }
+
+# Write a sample report through $logger using $1 as the state directory and
+# $log_name as the filename. Forward logger output and return the pipeline status.
 run_logger() {
     printf 'report\n' | julia --startup-file=no --history-file=no "$logger" "$1" "$log_name"
 }
+
+# Assert that logging to state directory $1 fails without writing to stdout.
+# Capture output under $fixture; use $2 to describe the rejected case on failure.
 reject() {
     if run_logger "$1" > "$fixture/stdout" 2> "$fixture/stderr"; then
         fail "accepted $2"

@@ -62,7 +62,7 @@ try
     try
         while !eof(stdin)
             data = readavailable(stdin)
-            write(log, data)
+            write(log, data) == length(data) || error("incomplete log write")
             flush(log)
             write(stdout, data)
             flush(stdout)

@@ -30,7 +30,12 @@ FFI_VIOLATIONS=0
 COMPLIANT_REPOS=0
 TOTAL_REPOS=0
 
-# Check a single repository
+# Scan repository directory $1 recursively for potential API/ABI/FFI language
+# violations and print the findings to stdout. Update API_VIOLATIONS,
+# ABI_VIOLATIONS, FFI_VIOLATIONS, COMPLIANT_REPOS and TOTAL_REPOS in the current
+# shell; initialise these counters before calling. A completed call returns the
+# final echo's status, not a compliance result. With set -e active, incrementing
+# a zero counter returns status 1 and can terminate the scan early.
 check_repo() {
     local repo_path="$1"
     local repo_name="$(basename "$repo_path")"

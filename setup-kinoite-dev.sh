@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: MPL-2.0
 # Kinoite Developer Environment Setup
 # Uses: nerdctl, distrobox, flatpak
-# Follows: Hyperpolymath Language Policy (ReScript, Deno, Rust, Gleam)
+# Follows: Hyperpolymath Language Policy (AffineScript, Bun, Deno, Rust, Gleam)
 
 set -euo pipefail
 
@@ -295,10 +295,10 @@ starship preset pure-preset -o ~/.config/starship.toml
 echo "Dev toolbox ready!"
 DEVEOF
 
-    # js (ReScript/Deno) box setup
+    # js (AffineScript/Deno) box setup
     cat > "$HOME/scripts/toolchains/setup-js.sh" << 'JSEOF'
 #!/usr/bin/env bash
-# ReScript + Deno environment (Hyperpolymath primary stack)
+# AffineScript + Deno environment
 set -euo pipefail
 
 # Deno (primary runtime per language policy)
@@ -311,19 +311,22 @@ export PATH="$DENO_INSTALL/bin:$PATH"
 # Verify
 deno --version
 
-# ReScript via Deno
-cat > ~/.local/bin/rescript << 'EOF'
-#!/bin/sh
-exec deno run --allow-read --allow-write --allow-env --allow-run --allow-net npm:rescript "$@"
-EOF
-chmod +x ~/.local/bin/rescript
+# AffineScript compiler, built from source with opam and dune
+sudo dnf install -y opam bubblewrap git
+opam init --bare -y
+opam switch create affinescript 5.2.0 -y || true
+eval "$(opam env --switch=affinescript)"
+mkdir -p ~/src
+[ -d ~/src/affinescript ] || git clone --depth 1 https://github.com/hyperpolymath/affinescript ~/src/affinescript
+(cd ~/src/affinescript && opam install . --deps-only --yes && dune build @install && dune install)
+affinescript --version || true
 
 # Useful Deno tools
 deno install --allow-read --allow-write --allow-env --allow-net --allow-run -gf --name=fresh https://deno.land/x/fresh/init.ts
 deno install --allow-read --allow-write --allow-env --allow-net --allow-run -gf jsr:@anthropic-ai/claude-code
 
-echo "ReScript + Deno environment ready!"
-echo "Remember: NO npm/node/bun in production (per language policy)"
+echo "AffineScript + Deno environment ready!"
+echo "Remember: Bun first; Deno, pnpm, npm as fallbacks; no Node.js or yarn (per language policy)"
 JSEOF
 
     # rust box setup

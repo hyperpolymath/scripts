@@ -81,7 +81,7 @@ defmodule RepoAuditor.RuleEngine do
     py_files = Path.wildcard(Path.join(repo_path, "**/*.py"))
 
     violations = []
-    violations = if ts_files != [], do: ["TypeScript found (Migrate to ReScript)" | violations], else: violations
+    violations = if ts_files != [], do: ["TypeScript found (Migrate to AffineScript)" | violations], else: violations
     violations = if py_files != [], do: ["Python found (Migrate to Julia)" | violations], else: violations
 
     if violations != [] do

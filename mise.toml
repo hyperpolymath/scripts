@@ -3,7 +3,6 @@
 rust = "latest"
 zig = "latest"
 bun = "latest"
-denojs = "latest"
 
 # Package managers
 pnpm = "latest"
@@ -32,11 +31,15 @@ gnu-grep = "latest"
 # Task runner alias
 [alias]
 task = "go-task"
-build = "cargo build --release"
-test = "cargo test"
 
 [tasks.lint]
 run = "bun install --frozen-lockfile && bunx --no-install --bun prettier --check ."
 
 [tasks.fmt]
 run = "bun install --frozen-lockfile && bunx --no-install --bun prettier --write ."
+
+[tasks.build]
+run = "just build"
+
+[tasks.test]
+run = "just test"
